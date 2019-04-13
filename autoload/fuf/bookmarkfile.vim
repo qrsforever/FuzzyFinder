@@ -91,7 +91,9 @@ function s:bookmarkHere(word)
         \   'pattern' : s:getLinePattern(line('.')),
         \   'time' : localtime(),
         \ }
-  let item.word = l9#inputHl('Question', '[fuf] Bookmark as:', item.word)
+  " lidong change: using simple word
+  " let item.word = l9#inputHl('Question', '[fuf] Bookmark as:', item.word)
+  let item.word = l9#inputHl('Question', '[fuf] Bookmark as:', expand('%:p:~'))
   if item.word !~ '\S'
     call fuf#echoWarning('Canceled')
     return
