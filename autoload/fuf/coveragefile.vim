@@ -101,6 +101,8 @@ function s:createChangeCoverageListener()
 
   function listener.onComplete(name, method)
     call s:changeCoverage(a:name)
+    " lidong add: record last item
+    let g:priv_fuf_current_item = a:name
   endfunction
 
   return listener

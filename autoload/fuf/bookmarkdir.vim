@@ -124,6 +124,10 @@ function s:handler.getCompleteItems(patternPrimary)
   return self.items
 endfunction
 
+" lidong add: open dir mode
+if !exists("g:priv_fuf_dir_openmode")
+    let g:priv_fuf_dir_openmode = 'cd'
+endif
 "
 function s:handler.onOpen(word, mode)
   if a:mode ==# s:OPEN_TYPE_DELETE
@@ -135,7 +139,7 @@ function s:handler.onOpen(word, mode)
   else
     let item = s:findItem(fuf#loadDataFile(s:MODE_NAME, 'items'), a:word)
     if !empty(item)
-        execute ':cd ' . fnameescape(item.path)
+        execute ':' . g:priv_fuf_dir_openmode . ' ' . fnameescape(item.path)
     endif
   endif
 endfunction
